@@ -23,7 +23,12 @@ variable "azs" {
   type        = list(string)
 }
 
-variable "key_name" {
-  description = "Key name to be used on the instance"
+variable "public_key" {
+  description = "The public key material"
+  type = string
+}
+
+variable "public_key_name" {
+  description = "The public key name"
   type = string
 }

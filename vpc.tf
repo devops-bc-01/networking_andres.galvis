@@ -3,8 +3,6 @@ module "vpc" {
 
   name = "vpc-network-andres"
   cidr = "192.168.0.0/20"
-
-  //id
   
 
   azs             = var.azs
@@ -20,4 +18,13 @@ module "vpc" {
   }
 }
 
+module "vpc_security_group" {
+  source = "terraform-aws-modules/security-group/aws"
 
+  name        = "vpc_security_group"
+  description = "Security group for VPC"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_rules       = ["ssh-tcp", "all-icmp"]
+}
